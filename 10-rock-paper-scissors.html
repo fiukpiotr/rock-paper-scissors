@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>rock, paper, scissors</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -18,24 +19,28 @@
     <h1>Rock Paper Scissors</h1>
   
     <div class="buttons">
-      <button onclick="playGame('rock')">Rock</button>
+      <button onclick="playGame('rock')" class="move-button"><img src="static/img/rock.png" alt="rock symbol" class="move-icon"></button>
     
-      <button onclick="playGame('paper');">Paper</button>
+      <button onclick="playGame('paper');" class="move-button"><img src="static/img/paper.png" alt="paper symbol" class="move-icon"></button>
       
-      <button onclick="playGame('scissors');">Scissors</button>
+      <button onclick="playGame('scissors');" class="move-button"><img src="static/img/scissors.png" alt="scissors symbol" class="move-icon"></button>
     </div>
     
-    <h2 class="js-result" style="text-align: center; margin: 50px;"></h2>
+    <h1 class="js-result"></h1>
     
-    <div>
-      <p class="js-your-move" style="display: inline-block; text-align: center; margin: 20px;"></p>
-      <p class="js-computer-move" style="display: inline-block; text-align: center; margin: 20px;"></p>
+    <div class="moves-container">
+      <div>
+        <p class="js-your-move" style="display: inline-block; text-align: center; margin: 20px;"></p>
+      </div>
+      <div>
+        <p class="js-computer-move" style="display: inline-block; text-align: center; margin: 20px;"></p>
+      </div>     
     </div>
     
     <p class="js-score"></p>
   
 
-    <button onclick="resetScore();" style="width: 120px; padding: 5px 10px; align-self: center;">RESET SCORE</button>
+    <button onclick="resetScore();" class="reset-score-button">Reset Score</button>
   </div>
 
 
@@ -47,9 +52,8 @@
 
   <script>
 
-
     document.querySelector('.js-result')
-        .innerHTML = '0 - 0 <br> FIGHT!';  
+        .innerHTML = 'Let\'s the game begin!';  
 
     let score = JSON.parse(localStorage.getItem('score')) || {
         wins: 0,
@@ -107,16 +111,20 @@
 
       document.querySelector('.js-result')
         .innerHTML = result;
+
       
+      const playerMoveImgPath = 'static/img/' + playerMove + '.png';
       document.querySelector('.js-your-move')
         .innerHTML = `
           You picked <br>
-          ${playerMove}.`; 
+          <img src="${playerMoveImgPath}" alt="${playerMove}" class="current-move-icon">`; 
       
+      
+      const computerMoveImgPath = 'static/img/' + computerMove + '.png';
       document.querySelector('.js-computer-move')
         .innerHTML = `
           Computer picked <br>
-          ${computerMove}`;
+          <img src="${computerMoveImgPath}" alt="${computerMove}" class="current-move-icon">`;
     }
 
     function updateScoreElement() {
@@ -142,18 +150,30 @@
     }
 
     function resetScore() {
+      if (score.wins > score.losses && score.losses != 0) {
+        beginState();
+      } else if (score.wins < score.losses && score.wins != 0) {
+        loseState();
+      } else {
+        document.querySelector('.js-result')
+        .innerHTML = 'Let\'s the game begin!';
+      }
+
       score.wins = 0;
       score.losses = 0;
       score.ties = 0;
       localStorage.removeItem('score');
       updateScoreElement();
-      beginState();
-
     }
 
     function beginState() {
       document.querySelector('.js-result')
-        .innerHTML = '0 - 0 <br> It was great battle! <br> Try again.'; 
+        .innerHTML = 'Congratulations!<br>Would you like a rematch?'; 
+    }
+
+    function loseState() {
+      document.querySelector('.js-result')
+        .innerHTML = 'I\'m sorry!<br>You lose.<br>Would you like a rematch?'; 
     }
 
   </script>
