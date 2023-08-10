@@ -24,7 +24,7 @@ body {
   margin: 5px;
   cursor: pointer;
   transition:
-    opacity .5s;
+    opacity .3s;
 }
 
 button {
@@ -33,6 +33,9 @@ button {
 }
 button:hover {
   opacity: .2;
+}
+button:active {
+  opacity: .6;
 }
 
 .moves-container {
