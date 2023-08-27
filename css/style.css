@@ -4,7 +4,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.reset-score-button {
+.reset-score-button,
+.auto-play-btn {
   padding: 5px 10px;
   border-radius: 5px;
   width: 120px;
