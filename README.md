@@ -5,6 +5,8 @@ A simple Rock-Paper-Scissors game in JavaScript. User plays against the computer
 - Rock beats scissors
 - Scissors beats paper
 - Paper beats rock
+
+You can press 'r' for rock, 'p' for paper and 's' for scissors on your keyboard to play as well as using your mouse.
   
 The outcome is displayed on the screen, showing whether the user wins, loses, or ties with the computer's choice. The game offers a fun and quick way to make decisions based on chance, following the traditional rules of the Rock-Paper-Scissors game.
 <br><br>
