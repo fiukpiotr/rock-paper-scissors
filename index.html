@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div style="width: 50%; margin: 0 auto; display: flex; flex-direction: column; justify-content: center; text-align: center;">
-    <h1>Rock Paper Scissors</h1>  
+  <div  class="game-container">
+    <img src="./static/img/logo.png" alt="rock paper scissors logo" class="logo">
     <div class="buttons">
       <button class="move-button js-rock-button"><img src="static/img/rock.png" alt="rock symbol" class="move-icon"></button>   
       <button class="move-button js-paper-button"><img src="static/img/paper.png" alt="paper symbol" class="move-icon"></button>
@@ -27,6 +27,7 @@
     <p class="js-score"></p> 
     <button onclick="resetScore();" class="reset-score-button">Reset Score</button>
     <button onclick="autoPlay()" class="auto-play-btn js-auto-play-btn">Auto Play</button>
+    <button onclick="endGame()" class="end-game-button js-end-game-btn">End Game</button>
   </div>
   <script src="scripts/scripts.js"></script>
 </body>

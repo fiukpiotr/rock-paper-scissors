@@ -4,6 +4,29 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.game-container {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.logo {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.game-title {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+}
+.game-title::first-letter {
+  text-transform: capitalize;
+}
+
+.end-game-button,
 .reset-score-button,
 .auto-play-btn {
   padding: 5px 10px;
@@ -26,6 +49,12 @@ body {
   cursor: pointer;
   transition:
     opacity .3s;
+}
+
+.end-game-button {
+  color: white;
+  background-color: rgb(17, 17, 17);
+  margin-bottom: 100px;
 }
 
 button {

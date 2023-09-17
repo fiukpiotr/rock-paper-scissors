@@ -15,14 +15,19 @@ let intervalId;
 function autoPlay() {
   if (!isAutoPlaying) {
     intervalId = setInterval(() => {
-        const playerMove = pickComputerMove();
-        playGame(playerMove);
-      }
-    , 1000);
+      const playerMove = pickComputerMove();
+      playGame(playerMove);
+    }, 1000);
     isAutoPlaying = true;
+  
+    document.querySelector('.js-auto-play-btn')
+      .innerHTML = 'Stop Playing';
+
   } else {
     clearInterval(intervalId);
     isAutoPlaying = false;
+    document.querySelector('.js-auto-play-btn')
+      .innerHTML = 'Auto Play';
   }
 }
 
@@ -156,6 +161,34 @@ score.losses = 0;
 score.ties = 0;
 localStorage.removeItem('score');
 updateScoreElement();
+}
+
+function endGame() {
+  if (score.wins > score.losses) {
+    document.querySelector('.js-result')
+    .innerHTML = `What a fight! <br> You win the match  ${score.wins} to ${score.losses} ! <br> Congrats!`;
+    }
+    else if ( score.wins < score.losses) {
+      document.querySelector('.js-result')
+      .innerHTML = 'What a fight! <br> Don\'t give up next time. <br> You\'re almost as good as me.';
+    }
+    else if ( score.wins === score.losses && score.ties > 0) {
+      document.querySelector('.js-result')
+      .innerHTML = `Hold your horses! <br> That was ${score.wins}:${score.losses}, so that\'s a tie. <br> Wanna play again?`;
+    }
+    else if ( score.wins === 0 && score.losses === 0 && score.ties === 0) {
+      document.querySelector('.js-result')
+      .innerHTML = `You haven't even try, didn't you?`;
+    }
+    else {
+      document.querySelector('.js-result')
+      .innerHTML = 'That\'s for sure not what you ment. Wanna play again?';
+    }
+  score.wins = 0;
+  score.losses = 0;
+  score.ties = 0;
+  localStorage.removeItem('score');
+  updateScoreElement();
 }
 
 function beginState() {
