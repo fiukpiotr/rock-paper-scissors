@@ -163,7 +163,14 @@ localStorage.removeItem('score');
 updateScoreElement();
 }
 
+function stopAutoPlay() {
+  clearInterval(intervalId);
+  isAutoPlaying = false;
+  document.querySelector('.js-auto-play-btn').innerHTML = 'Auto Play';
+}
+
 function endGame() {
+  stopAutoPlay();
   if (score.wins > score.losses) {
     document.querySelector('.js-result')
     .innerHTML = `What a fight! <br> You win the match  ${score.wins} to ${score.losses} ! <br> Congrats!`;
